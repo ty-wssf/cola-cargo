@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.rickie.domain.model.aggregates.Cargo</OriginalElement>
+  <nodes>
+    <node x="0.0" y="237.0">com.rickie.domain.model.valueobjects.Leg</node>
+    <node x="0.0" y="451.0">com.rickie.domain.model.valueobjects.RouteSpecification</node>
+    <node x="218.0" y="237.0">com.rickie.domain.model.valueobjects.Delivery</node>
+    <node x="0.0" y="0.0">com.rickie.domain.model.aggregates.Cargo</node>
+    <node x="404.0" y="451.0">com.rickie.domain.model.valueobjects.CargoItinerary</node>
+    <node x="310.0" y="0.0">com.rickie.domain.model.valueobjects.LastCargoHandledEvent</node>
+    <node x="0.0" y="596.0">com.rickie.domain.model.aggregates.BookingId</node>
+    <node x="220.0" y="451.0">com.rickie.domain.model.valueobjects.RoutingStatus</node>
+    <node x="503.0" y="237.0">com.rickie.domain.model.valueobjects.TransportStatus</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.7562076749435666" x="546.5" y="433.0" />
+  <SelectedNodes>
+    <node>com.rickie.domain.model.aggregates.Cargo</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

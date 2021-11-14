@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rickie.tracking.gatewayimpl.TrackingHandlingEventsMapper">
+
+    <resultMap id="BaseResultMap" type="com.rickie.tracking.gatewayimpl.TrackingHandlingEventsDO">
+            <id property="id" column="Id" jdbcType="INTEGER"/>
+            <result property="trackingId" column="tracking_id" jdbcType="INTEGER"/>
+            <result property="eventType" column="event_type" jdbcType="VARCHAR"/>
+            <result property="eventTime" column="event_time" jdbcType="TIMESTAMP"/>
+            <result property="locationId" column="location_id" jdbcType="VARCHAR"/>
+            <result property="voyageNumber" column="voyage_number" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        Id,tracking_id,event_type,
+        event_time,location_id,voyage_number
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tracking_handling_events
+        where  Id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tracking_handling_events
+        where  Id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.rickie.tracking.gatewayimpl.TrackingHandlingEventsDO" useGeneratedKeys="true">
+        insert into tracking_handling_events
+        ( Id,tracking_id,event_type
+        ,event_time,location_id,voyage_number
+        )
+        values (#{id,jdbcType=INTEGER},#{trackingId,jdbcType=INTEGER},#{eventType,jdbcType=VARCHAR}
+        ,#{eventTime,jdbcType=TIMESTAMP},#{locationId,jdbcType=VARCHAR},#{voyageNumber,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.rickie.tracking.gatewayimpl.TrackingHandlingEventsDO" useGeneratedKeys="true">
+        insert into tracking_handling_events
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">Id,</if>
+                <if test="trackingId != null">tracking_id,</if>
+                <if test="eventType != null">event_type,</if>
+                <if test="eventTime != null">event_time,</if>
+                <if test="locationId != null">location_id,</if>
+                <if test="voyageNumber != null">voyage_number,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null"> #{id,jdbcType=INTEGER},</if>
+                <if test="trackingId != null"> #{trackingId,jdbcType=INTEGER},</if>
+                <if test="eventType != null"> #{eventType,jdbcType=VARCHAR},</if>
+                <if test="eventTime != null"> #{eventTime,jdbcType=TIMESTAMP},</if>
+                <if test="locationId != null"> #{locationId,jdbcType=VARCHAR},</if>
+                <if test="voyageNumber != null"> #{voyageNumber,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.rickie.tracking.gatewayimpl.TrackingHandlingEventsDO">
+        update tracking_handling_events
+        <set>
+                <if test="trackingId != null">
+                    tracking_id = #{trackingId,jdbcType=INTEGER},
+                </if>
+                <if test="eventType != null">
+                    event_type = #{eventType,jdbcType=VARCHAR},
+                </if>
+                <if test="eventTime != null">
+                    event_time = #{eventTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="locationId != null">
+                    location_id = #{locationId,jdbcType=VARCHAR},
+                </if>
+                <if test="voyageNumber != null">
+                    voyage_number = #{voyageNumber,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   Id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.rickie.tracking.gatewayimpl.TrackingHandlingEventsDO">
+        update tracking_handling_events
+        set 
+            tracking_id =  #{trackingId,jdbcType=INTEGER},
+            event_type =  #{eventType,jdbcType=VARCHAR},
+            event_time =  #{eventTime,jdbcType=TIMESTAMP},
+            location_id =  #{locationId,jdbcType=VARCHAR},
+            voyage_number =  #{voyageNumber,jdbcType=VARCHAR}
+        where   Id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

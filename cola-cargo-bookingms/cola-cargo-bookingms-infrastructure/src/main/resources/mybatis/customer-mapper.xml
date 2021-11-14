@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rickie.customer.CustomerMapper">
+    <select id="getById" resultType="com.rickie.customer.CustomerDO" resultMap="customerMap">
+        select * from customer where customer_id = #{id}
+    </select>
+    <resultMap type="com.rickie.customer.CustomerDO" id="customerMap">
+         <result property="customerId" column="emp_no"/>
+         <result property="memberId" column="salary"/>
+         <result property="globalId" column="from_date"/>
+     </resultMap>
+</mapper>

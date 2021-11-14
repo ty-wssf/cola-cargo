@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rickie.tracking.gatewayimpl.TrackingActivityMapper">
+
+    <resultMap id="BaseResultMap" type="com.rickie.tracking.gatewayimpl.TrackingActivityDO">
+            <id property="id" column="Id" jdbcType="INTEGER"/>
+            <result property="trackingNumber" column="tracking_number" jdbcType="VARCHAR"/>
+            <result property="bookingId" column="booking_id" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        Id,tracking_number,booking_id
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tracking_activity
+        where  Id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <select id="selectByBookingId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tracking_activity
+        where  booking_id = #{bookingId,jdbcType=VARCHAR}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tracking_activity
+        where  Id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.rickie.tracking.gatewayimpl.TrackingActivityDO" useGeneratedKeys="true">
+        insert into tracking_activity
+        ( Id,tracking_number,booking_id
+        )
+        values (#{id,jdbcType=INTEGER},#{trackingNumber,jdbcType=VARCHAR},#{bookingId,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.rickie.tracking.gatewayimpl.TrackingActivityDO" useGeneratedKeys="true">
+        insert into tracking_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">Id,</if>
+                <if test="trackingNumber != null">tracking_number,</if>
+                <if test="bookingId != null">booking_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null"> #{id,jdbcType=INTEGER},</if>
+                <if test="trackingNumber != null"> #{trackingNumber,jdbcType=VARCHAR},</if>
+                <if test="bookingId != null"> #{bookingId,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.rickie.tracking.gatewayimpl.TrackingActivityDO">
+        update tracking_activity
+        <set>
+                <if test="trackingNumber != null">
+                    tracking_number = #{trackingNumber,jdbcType=VARCHAR},
+                </if>
+                <if test="bookingId != null">
+                    booking_id = #{bookingId,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   Id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.rickie.tracking.gatewayimpl.TrackingActivityDO">
+        update tracking_activity
+        set 
+            tracking_number =  #{trackingNumber,jdbcType=VARCHAR},
+            booking_id =  #{bookingId,jdbcType=VARCHAR}
+        where   Id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

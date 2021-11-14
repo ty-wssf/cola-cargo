@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rickie.handling.gatewayimpl.HandlingActivityMapper">
+
+    <resultMap id="BaseResultMap" type="com.rickie.handling.gatewayimpl.HandlingActivityDO">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="eventCompletionTime" column="event_completion_time" jdbcType="TIMESTAMP"/>
+            <result property="eventType" column="event_type" jdbcType="VARCHAR"/>
+            <result property="bookingId" column="booking_id" jdbcType="VARCHAR"/>
+            <result property="voyageNumber" column="voyage_number" jdbcType="VARCHAR"/>
+            <result property="location" column="location" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,event_completion_time,event_type,
+        booking_id,voyage_number,location
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from handling_activity
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from handling_activity
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.rickie.handling.gatewayimpl.HandlingActivityDO" useGeneratedKeys="true">
+        insert into handling_activity
+        ( id,event_completion_time,event_type
+        ,booking_id,voyage_number,location
+        )
+        values (#{id,jdbcType=INTEGER},#{eventCompletionTime,jdbcType=TIMESTAMP},#{eventType,jdbcType=VARCHAR}
+        ,#{bookingId,jdbcType=VARCHAR},#{voyageNumber,jdbcType=VARCHAR},#{location,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.rickie.handling.gatewayimpl.HandlingActivityDO" useGeneratedKeys="true">
+        insert into handling_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="eventCompletionTime != null">event_completion_time,</if>
+                <if test="eventType != null">event_type,</if>
+                <if test="bookingId != null">booking_id,</if>
+                <if test="voyageNumber != null">voyage_number,</if>
+                <if test="location != null">location,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null"> #{id,jdbcType=INTEGER},</if>
+                <if test="eventCompletionTime != null"> #{eventCompletionTime,jdbcType=TIMESTAMP},</if>
+                <if test="eventType != null"> #{eventType,jdbcType=VARCHAR},</if>
+                <if test="bookingId != null"> #{bookingId,jdbcType=VARCHAR},</if>
+                <if test="voyageNumber != null"> #{voyageNumber,jdbcType=VARCHAR},</if>
+                <if test="location != null"> #{location,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.rickie.handling.gatewayimpl.HandlingActivityDO">
+        update handling_activity
+        <set>
+                <if test="eventCompletionTime != null">
+                    event_completion_time = #{eventCompletionTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="eventType != null">
+                    event_type = #{eventType,jdbcType=VARCHAR},
+                </if>
+                <if test="bookingId != null">
+                    booking_id = #{bookingId,jdbcType=VARCHAR},
+                </if>
+                <if test="voyageNumber != null">
+                    voyage_number = #{voyageNumber,jdbcType=VARCHAR},
+                </if>
+                <if test="location != null">
+                    location = #{location,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.rickie.handling.gatewayimpl.HandlingActivityDO">
+        update handling_activity
+        set 
+            event_completion_time =  #{eventCompletionTime,jdbcType=TIMESTAMP},
+            event_type =  #{eventType,jdbcType=VARCHAR},
+            booking_id =  #{bookingId,jdbcType=VARCHAR},
+            voyage_number =  #{voyageNumber,jdbcType=VARCHAR},
+            location =  #{location,jdbcType=VARCHAR}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

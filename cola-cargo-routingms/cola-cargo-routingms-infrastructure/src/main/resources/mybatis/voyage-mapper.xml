@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rickie.routing.VoyageMapper">
+    <select id="findAll" resultType="com.rickie.routing.VoyageDO" resultMap="voyageMap">
+        SELECT v.*, c.id as movement_id, c.arrival_date,c.departure_date,c.arrival_location_id,c.departure_location_id
+        FROM voyage v
+        inner join carrier_movement c ON v.Id = c.voyage_id
+        order by v.id
+    </select>
+    <resultMap type="com.rickie.routing.VoyageDO" id="voyageMap">
+        <id property="id" column="id"/>
+        <result property="voyageNumber" column="voyage_number"/>
+        <collection property="carrierMovements" ofType="com.rickie.routing.CarrierMovementDO">
+            <id property="id" column="movement_id" />
+            <result property="arrivalDate" column="arrival_date" />
+            <result property="departureDate" column="departure_date" />
+            <result property="arrivalLocation" column="arrival_location_id" />
+            <result property="departureLocation" column="departure_location_id" />
+        </collection>
+    </resultMap>
+</mapper>
