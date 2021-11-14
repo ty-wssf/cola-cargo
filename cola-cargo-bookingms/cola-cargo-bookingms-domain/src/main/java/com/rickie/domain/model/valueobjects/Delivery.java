@@ -11,12 +11,14 @@ import lombok.Data;
  */
 @Data
 public class Delivery {
-    // routing status of the cargo
+    // 货物路由状态
     private RoutingStatus routingStatus;
-    // transport satus of the cargo
+    // 货物运输状态
     private TransportStatus transportStatus;
+    // 最后位置
     private String lastKnownLocation;
     private String currentVoyateNumber;
+    // 货物最后一次的处理事件
     private LastCargoHandledEvent lastEvent;
 
     public Delivery() {

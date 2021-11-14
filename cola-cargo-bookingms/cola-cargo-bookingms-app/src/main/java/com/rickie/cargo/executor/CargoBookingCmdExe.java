@@ -15,7 +15,7 @@ import java.util.UUID;
  * @author rickie
  * @version 1.0.0
  * @ClassName CargoBookingCmdExe.java
- * @Description TODO
+ * @Description 货物预定处理程序
  * @createTime 2021年06月14日 12:17:00
  */
 @Component
@@ -26,11 +26,11 @@ public class CargoBookingCmdExe {
     public SingleResponse<String> execute(CargoBookCmd cmd) {
         //The flow of usecase is defined here.
         //The core ablility should be implemented in Domain. or sink to Domain gradually
-        if(cmd.getOriginLocation().isEmpty() || cmd.getOriginLocation().equals("") ||
-                cmd.getDestLocation().isEmpty() || cmd.getDestLocation().equals("")){
+        if (cmd.getOriginLocation().isEmpty() || cmd.getOriginLocation().equals("") ||
+                cmd.getDestLocation().isEmpty() || cmd.getDestLocation().equals("")) {
             throw new BizException(ErrorCode.LOCATION_EMPTY.getErrCode(), "位置为空");
         }
-        if(cmd.getBookingAmount()<0) {
+        if (cmd.getBookingAmount() < 0) {
             throw new BizException(ErrorCode.BOOKING_AMOUNT_NEGATIVE.getErrCode(), "预订数量不能为负数");
         }
 

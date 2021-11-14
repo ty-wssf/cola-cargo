@@ -16,15 +16,14 @@ public class Cargo {
     private Long id;
     // 预定号
     private BookingId bookingId;
+    // 预定金额
     private Integer bookingAmount;
+    // 位置
     private String location;
-    // route specification of the cargo
     // 货物路线说明
     private RouteSpecification routeSpecification;
-    // itinerary assigned to the cargo
     // 分配给货物的行程
     private CargoItinerary itinerary;
-    // Checks the delivery progress of the cargo against the actual Route Specification and Itinerary
     // 货物交付进度
     private Delivery delivery;
 

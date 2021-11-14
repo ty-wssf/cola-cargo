@@ -1,7 +1,6 @@
 package com.rickie.test;
 
 import com.alibaba.cola.dto.Response;
-import com.rickie.api.CustomerServiceI;
 import com.rickie.dto.CustomerAddCmd;
 import com.rickie.dto.data.CustomerDTO;
 import com.rickie.dto.data.ErrorCode;

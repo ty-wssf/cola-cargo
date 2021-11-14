@@ -21,7 +21,7 @@ public class HandlingActivityUpdateCmdExe {
     @Autowired
     private CargoBookingGateway cargoBookingGateway;
 
-    public SingleResponse<String> execute(HandlingActivityUpdateCmd cmd) {
+    public SingleResponse<String> execjjute(HandlingActivityUpdateCmd cmd) {
         LastCargoHandledEvent lastCargoHandledEvent = CargoDTOConvertor.toLastCargoHandledEvent(cmd);
         cargoBookingGateway.updateByLastCargoHandledEvent(lastCargoHandledEvent);
         return SingleResponse.of(lastCargoHandledEvent.getBookingId());

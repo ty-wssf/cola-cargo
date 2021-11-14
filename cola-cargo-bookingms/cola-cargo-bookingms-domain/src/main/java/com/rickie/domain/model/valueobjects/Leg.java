@@ -8,7 +8,7 @@ import java.util.Date;
  * @author rickie
  * @version 1.0.0
  * @ClassName Leg.java
- * @Description TODO
+ * @Description 行程段
  * @createTime 2021年06月13日 16:47:00
  */
 @Data
@@ -21,7 +21,7 @@ public class Leg {
     private Date unloadTime;
 
     public Leg(String voyageNumber, String loadLocation, String unloadLocation,
-               Date loadTime, Date unloadTime){
+               Date loadTime, Date unloadTime) {
         this.voyageNumber = voyageNumber;
         this.loadLocation = loadLocation;
         this.unloadLocation = unloadLocation;
